@@ -1,0 +1,58 @@
+ext {
+	set('springAiVersion', "1.0.0-M6")
+}
+
+subprojects {
+	group = 'io.claude.mcp'
+	version = '0.0.1-SNAPSHOT'
+
+	java {
+		toolchain {
+			languageVersion = JavaLanguageVersion.of(21)
+		}
+	}
+
+	apply plugin: 'java'
+	apply plugin: 'io.spring.dependency-management'
+
+	repositories {
+		mavenCentral()
+	}
+
+	dependencyManagement {
+		imports {
+			mavenBom "org.springframework.ai:spring-ai-bom:${springAiVersion}"
+		}
+
+		dependencies {
+			implementation ('org.springframework.boot:spring-boot-starter-web')
+			implementation 'org.springframework.ai:spring-ai-anthropic-spring-boot-starter'
+			implementation 'org.springframework.boot:spring-boot-starter'
+			implementation 'org.springframework.boot:spring-boot-starter-web'
+			testImplementation 'org.springframework.boot:spring-boot-starter-test'
+			testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+		}
+	}
+}
+
+bootJar {
+	enabled = true
+}
+
+springBoot {
+	mainClass = "io.claude.mcp.McpServerApp"
+}
+
+jar {
+	manifest {
+		attributes(
+				'Main-Class': 'io.claude.mcp.McpServerApp'
+		)
+	}
+	enabled = true
+}
+
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
