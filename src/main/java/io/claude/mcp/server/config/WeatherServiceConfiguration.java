@@ -1,3 +1,4 @@
+/* (C)2025 */
 package io.claude.mcp.server.config;
 
 import io.claude.mcp.server.service.WeatherService;
@@ -18,6 +19,6 @@ public class WeatherServiceConfiguration {
 
     @Bean
     public ToolCallbackProvider weatherTools(WeatherService weatherService) {
-        return  MethodToolCallbackProvider.builder().toolObjects(weatherService).build();
+        return MethodToolCallbackProvider.builder().toolObjects(weatherService).build();
     }
 }

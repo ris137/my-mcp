@@ -1,3 +1,4 @@
+/* (C)2025 */
 package io.claude.mcp.server.service;
 
 import io.claude.mcp.server.config.WeatherServiceConfiguration;
@@ -9,8 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest(classes = WeatherServiceConfiguration.class)
 public class WeatherServiceTest {
 
-    @Autowired
-    private WeatherService service;
+    @Autowired private WeatherService service;
 
     @Test
     public void test1() {
